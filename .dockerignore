@@ -1,0 +1,18 @@
+# Локальные артефакты в контекст сборки не тянем
+node_modules
+.nuxt
+.output
+.data
+dist
+.git
+.idea
+.vscode
+*.log
+Dockerfile
+.dockerignore
+
+# Секреты не попадают ни в контекст, ни в слои образа:
+# они передаются контейнеру в рантайме (--env-file / -e / compose env_file)
+.env
+.env.*
+!.env.example

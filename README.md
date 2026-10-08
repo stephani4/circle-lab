@@ -108,6 +108,64 @@ NUXT_ORDER_EMAIL=...      # куда доставлять заявки
 Опционально можно включить доставку в Telegram — `NUXT_TELEGRAM_BOT_TOKEN`,
 `NUXT_TELEGRAM_CHAT_ID` (см. комментарии в `server/api/order.post.ts`).
 
+## Запуск в Docker
+
+```bash
+docker build -t landing .
+docker run -d --name landing -p 3000:3000 --env-file .env.production landing
+# → http://localhost:3000
+```
+
+Образ многостадийный (`node:24-alpine`): сборка в одном слое, в финальный
+попадает только `.output`, приложение работает от пользователя `node`.
+`.env.*` исключены из контекста сборки (`.dockerignore`), поэтому секреты
+**не зашиваются в слои образа** — один и тот же образ переносится между
+окружениями без пересборки.
+
+### Как прокидывать переменные окружения
+
+Значения `NUXT_*` подставляются Nitro в runtimeConfig при **старте**
+контейнера — тремя способами:
+
+**1. Файл окружения** (готовый `.env.production` подходит как есть —
+формат `KEY=VALUE` построчно, комментарии игнорируются):
+
+```bash
+docker run -d --name landing -p 3000:3000 --env-file .env.production landing
+```
+
+**2. Явные переменные** (`-e` можно повторять):
+
+```bash
+docker run -d --name landing -p 3000:3000 \
+  -e NUXT_SMTP_HOST=smtp.mail.ru \
+  -e NUXT_SMTP_PORT=465 \
+  -e NUXT_SMTP_USER=you@mail.ru \
+  -e NUXT_SMTP_PASS=... \
+  -e NUXT_ORDER_EMAIL=you@mail.ru \
+  landing
+```
+
+**3. docker-compose:**
+
+```yaml
+services:
+  landing:
+    build: .
+    image: landing:latest
+    ports:
+      - '3000:3000'
+    env_file: .env.production
+    restart: unless-stopped
+```
+
+Правила именования: ключ runtimeConfig `smtp.host` → `NUXT_SMTP_HOST`,
+`orderEmail` → `NUXT_ORDER_EMAIL`; публичные настройки → `NUXT_PUBLIC_*`.
+Порт по умолчанию 3000 — меняется через `-e PORT=8080`.
+
+⚠️ Не прокидывайте секреты через `ARG`/`ENV` в Dockerfile — они останутся
+в слоях (`docker history`). Только рантайм, как описано выше.
+
 ## SEO
 
 - SSR-разметка, `lang="ru"`, canonical, description, Open Graph.

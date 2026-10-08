@@ -330,8 +330,7 @@ onMounted(() => {
 
               <p class="mt-4 text-center text-xs text-ink-mute">
                 Нажимая кнопку, вы соглашаетесь с
-                <a href="#" class="link-underline">политикой обработки данных</a>. Это демо-форма: заявка
-                сохраняется локально в логах сервера, отправка в Telegram/e-mail — см. <code>server/api/order.post.ts</code>.
+                <a href="#" class="link-underline">политикой обработки данных</a>.
               </p>
             </form>
           </div>

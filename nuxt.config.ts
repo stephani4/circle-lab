@@ -92,7 +92,7 @@ export default defineNuxtConfig({
       contactTelegram: '@your_username',
       contactMax: 'https://max.ru/u/f9LHodD0cOKB82KF4PDM_WwmoY-xK7FMpDJUSww8AKZDvCpuC-SS9LBymD0',
       contactPhone: '+7-903-993-36-26',
-      contactEmail: 'hello@example.com',
+      contactEmail: 'digital.craft@inbox.ru',
       workingHours: 'Пн–Пт, 10:00–19:00 (МСК)',
       companyName: 'Digital Craft',
     },

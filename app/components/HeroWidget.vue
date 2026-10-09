@@ -29,7 +29,7 @@ const picks = [
           <Icon name="telegram" class="size-5" />
         </span>
         <div class="min-w-0">
-          <p class="truncate font-display text-sm font-bold text-ink">Бот · Digital Craft</p>
+          <p class="truncate font-display text-sm font-bold text-ink">Бот · Circle Lab</p>
           <p class="flex items-center gap-1.5 text-xs text-mint-400">
             <span class="size-1.5 rounded-full bg-mint-400" />
             online · отвечает за 1.2 с

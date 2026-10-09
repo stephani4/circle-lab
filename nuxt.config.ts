@@ -12,7 +12,7 @@ if (existsSync(envFile)) process.loadEnvFile(envFile)
 
 // Яндекс.Метрика: id счётчика нужен и в <head>, и в плагине
 // app/plugins/metrika.client.ts (учёт SPA-переходов) — держим в одном месте.
-const yandexMetrikaId = '113565912'
+const yandexMetrikaId = '113575890'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',

@@ -43,7 +43,7 @@ export default defineNuxtConfig({
         },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'ru_RU' },
-        { property: 'og:site_name', content: 'Digital Craft' },
+        { property: 'og:site_name', content: 'Circle Lab' },
         { property: 'og:title', content: 'Чат-боты и веб-приложения для бизнеса' },
         {
           property: 'og:description',
@@ -112,9 +112,9 @@ export default defineNuxtConfig({
       contactTelegram: '@your_username',
       contactMax: 'https://max.ru/u/f9LHodD0cOKB82KF4PDM_WwmoY-xK7FMpDJUSww8AKZDvCpuC-SS9LBymD0',
       contactPhone: '+7-903-993-36-26',
-      contactEmail: 'digital.craft@inbox.ru',
+      contactEmail: 'circle.lab@mail.ru',
       workingHours: 'Пн–Пт, 10:00–19:00 (МСК)',
-      companyName: 'Digital Craft',
+      companyName: 'Circle Lab',
     },
   },
 })

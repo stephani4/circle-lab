@@ -5,7 +5,6 @@
 
 type PublicConfig = {
   siteUrl: string
-  contactTelegram: string
   contactMax: string
   contactPhone: string
   contactEmail: string
@@ -13,13 +12,7 @@ type PublicConfig = {
   companyName: string
 }
 
-const normalizeUsername = (value: string) => value.replace(/^@/, '').trim()
-
 export const SiteConfig = {
-  telegramUrl(username: string) {
-    return `https://t.me/${normalizeUsername(username)}`
-  },
-
   phoneHref(phone: string) {
     return `tel:${phone.replace(/[^\d+]/g, '')}`
   },

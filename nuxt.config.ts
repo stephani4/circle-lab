@@ -109,7 +109,6 @@ export default defineNuxtConfig({
       siteUrl: 'http://localhost:3000',
       // id счётчика Яндекс.Метрики — для плагина metrika.client.ts
       yandexMetrikaId,
-      contactTelegram: '@your_username',
       contactMax: 'https://max.ru/u/f9LHodD0cOKB82KF4PDM_WwmoY-xK7FMpDJUSww8AKZDvCpuC-SS9LBymD0',
       contactPhone: '+7-903-993-36-26',
       contactEmail: 'circle.lab@mail.ru',

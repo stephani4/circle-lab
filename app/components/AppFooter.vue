@@ -51,11 +51,6 @@ const year = new Date().getFullYear()
           <h2 class="text-[11px] font-semibold tracking-[0.18em] text-ink-mute uppercase">Контакты</h2>
           <ul class="mt-5 space-y-3.5 text-sm">
             <li>
-              <a :href="SiteConfig.telegramUrl(site.contactTelegram)" target="_blank" rel="noopener" class="link-underline text-ink-soft hover:text-ink">
-                {{ site.contactTelegram }}
-              </a>
-            </li>
-            <li>
               <a :href="SiteConfig.phoneHref(site.contactPhone)" class="link-underline text-ink-soft hover:text-ink">
                 {{ site.contactPhone }}
               </a>

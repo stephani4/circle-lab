@@ -19,7 +19,12 @@ function escapeHtml(value: string): string {
 
 function buildText(subject: string, fields: EmailField[], meta: string[]): string {
   const body = fields.map((field) => `${field.label}: ${field.value}`).join('\n')
-  return [subject, '', body, ...meta.length ? ['', ...meta] : []].join('\n')
+  // Пустые блоки пропускаем — письмо без полей (например, уведомление
+  // о визите в server/api/visit.post.ts) не должно состоять из пустых строк
+  const parts = [subject]
+  if (body) parts.push('', body)
+  if (meta.length) parts.push('', ...meta)
+  return parts.join('\n')
 }
 
 function buildHtml(subject: string, fields: EmailField[], meta: string[]): string {

@@ -49,11 +49,15 @@ app/
 │   ├── useScrollSpy.ts      # активная секция в навигации
 │   └── useSite.ts           # контакты и ссылки
 ├── error.vue                # 404 / 500
-└── plugins/reveal.client.ts # появление секций при скролле
+└── plugins/
+    ├── metrika.client.ts    # Яндекс.Метрика: учёт SPA-переходов
+    ├── reveal.client.ts     # появление секций при скролле
+    └── visit.client.ts      # уведомление серверу о визите (письмо)
 
 server/
 ├── api/order.post.ts        # приём заявки (валидация, лимит, honeypot)
-├── utils/mail.ts            # письмо со заявкой по SMTP (nodemailer)
+├── api/visit.post.ts        # письмо о визите «Новый клиент: {IP}»
+├── utils/mail.ts            # письма по SMTP (nodemailer)
 └── routes/sitemap.xml.ts    # карта сайта
 ```
 
@@ -106,6 +110,19 @@ NUXT_ORDER_EMAIL=...      # куда доставлять заявки
 
 Опционально можно включить доставку в Telegram — `NUXT_TELEGRAM_BOT_TOKEN`,
 `NUXT_TELEGRAM_CHAT_ID` (см. комментарии в `server/api/order.post.ts`).
+
+## Уведомления о визитах
+
+При каждом заходе на сайт (полной загрузке страницы) клиентский плагин
+`app/plugins/visit.client.ts` вызывает `POST /api/visit`
+(`server/api/visit.post.ts`), и на `NUXT_ORDER_EMAIL` уходит письмо
+с темой **«Новый клиент: {IP}»** — тем же SMTP, что и заявки с формы.
+
+- IP берётся из `X-Forwarded-For` (за прокси/балансировщиком), как и в форме.
+- Лимит — 10 уведомлений в минуту с одного IP; дальше запрос молча
+  пропускается, чтобы боты и частые перезагрузки не флодили ящик.
+- Ошибки SMTP не влияют на страницу: ответ всегда `{ ok: true }`,
+  детали пишутся в лог сервера. Краулеры без JS уведомления не шлют.
 
 ## Запуск в Docker
 

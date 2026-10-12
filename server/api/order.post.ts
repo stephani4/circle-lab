@@ -32,9 +32,9 @@ const topicLabels: Record<string, string> = {
 /** Зеркало ORDER_BUDGETS из app/composables/useOrderForm.ts (сервер не подключает app-композаблы) */
 const budgetLabels: Record<string, string> = {
   '': 'Не определён',
-  '50-100k': '10 000 – 20 000 ₽',
-  '100-300k': '20 000 – 30 000 ₽',
-  '300k+': 'от 30 000 ₽',
+  '10-20k': '10 000 – 20 000 ₽',
+  '20-30k': '20 000 – 30 000 ₽',
+  '30k+': 'от 30 000 ₽',
   discuss: 'Хочу обсудить',
 }
 
